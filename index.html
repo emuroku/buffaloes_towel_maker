@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arbutus&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -19,17 +25,23 @@
 
     <!-- container -->
     <div class="container">
-        <div class=></div>
         <p>バファローズ公式グッズのメッセージタオル風の画像をつくろう！</p>
-        <!-- <p>※本家オリックス・バファローズとは何の関係もございません。</p> -->
+        <p>▼こんな画像ができます▼</p>
         <img class="main_img" src="img/towel_sample_p.png" width=400px>
-
+        <div id="text-box">
+        </div>
+        <div>
+            <p>▼ここに作成した画像が表示されます▼</p>
+            <canvas id="cv" width="1254" height="530" style="width: 400px; border:1px solid #666666"></canvas>
+            <!-- <canvas id="logo" width="1254" height="530"></canvas> -->
+        </div>
         <!-- 入力フォーム -->
         <form>
             <!-- カラー選択 -->
-            <div class="form-group">カラー
+            <div class="form-group" id="bg_color">カラー
                 <div class="custom-control custom-radio custom-control-inline">
-                    <div class="cl_pink"><input type="radio" id="pink" name="color" class="custom-control-input">
+                    <div class="cl_pink"><input type="radio" id="pink" name="color" class="custom-control-input"
+                            checked>
                         <label class="custom-control-label" for="pink">ピンク</label>
                     </div>
                 </div>
@@ -47,18 +59,21 @@
 
             <!-- メッセージ入力 -->
             <div class="form-group form-row">
-                <label class="col-md-3 col-form-label text-md-right" for="message">メッセージ</label> 
+                <label class="col-md-3 col-form-label text-md-right" for="message">メッセージ</label>
                 <div class="col-md-6">
                     <input class="form-control" type="text" id="message">
                 </div>
             </div>
             <div class="form-group form-row">
-                <label class="col-md-3 col-form-label text-md-right" for="teamlogo">チームロゴ</label> 
+                <label class="col-md-3 col-form-label text-md-right" for="teamlogo">チームロゴ</label>
                 <div class="col-md-6">
                     <input class="form-control" type="text" id="teamlogo">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">作成する</button>
+            <button type="submit" class="btn btn-primary" id="btn_dl">作成する
+            <a id="download" download="sample.png"></a>
+            </button>
+        
         </form>
     </div>
 
@@ -70,7 +85,7 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
-
+    <script src="index.js"></script>
 </body>
 
 </html>
