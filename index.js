@@ -92,5 +92,5 @@ function drawText_logo(text) {
 // 画像を保存
 document.getElementById('btn_dl').addEventListener('click', dlImg);
 function dlImg(){
-    
+    alert('test');
 }
