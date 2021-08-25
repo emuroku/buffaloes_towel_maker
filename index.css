@@ -1,0 +1,24 @@
+.cl_pink {
+    background-color: #e9cbd2;
+}
+
+.cl_blue {
+    background-color: #d7e7ea;
+}
+
+.cl_green {
+    background-color: #ddecce;
+}
+.container{
+    text-align: center;
+    padding: 20px;
+}
+
+.main_img{
+    margin: 0 0 40px 0;
+    border: 1px #666666 solid;
+}
+
+.message_font{
+    font-family: 'Kosugi Maru', sans-serif;
+}
