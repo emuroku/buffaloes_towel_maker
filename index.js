@@ -128,7 +128,6 @@ var createImage = function (context) {
     return image;
 }
 
-
 function downloadCanvas() {
     // alert('button pushed');
     let link = document.createElement("a");
