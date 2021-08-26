@@ -18,6 +18,7 @@ var font_color = '#e05581'; // 文字色の設定
 // ラジオボタンが変更されたらidが持つ文字列をcolorに代入する
 document.getElementById('bg_color'), addEventListener('change', colorChange);
 function colorChange() {
+    // basedrawed = false;
     let radio = document.querySelectorAll('#bg_color input');
     for (let i = 0; i < radio.length; i++) {
         if (radio[i].checked) {
@@ -49,23 +50,35 @@ function colorChange() {
 console.log(bgImg.src);
 
 // canvas
-const canvas_m = document.getElementById("cv");
+const canvas_m = document.querySelector("#cv");
 const ctx = canvas_m.getContext("2d");
 
 const canvas_l = document.querySelector("#logo");
 const ctx_l = canvas_l.getContext("2d");
+
+// ベース部分描画用フラグ
+var basedrawed = false;
 
 // download用のa要素
 const a = document.getElementById('download');
 
 // 背景画像読み込み後にcanvasへ描画
 bgImg.onload = () => {
-    ctx.drawImage(bgImg, 0, 0);
+    if (basedrawed == false) {
+        ctx.drawImage(bgImg, 0, 0);
+        ctx_l.drawImage(bgImg_l, 0, 0);
+    }
+}
+
+function drawBase(){
+        ctx.drawImage(bgImg, 0, 0);
+        ctx_l.drawImage(bgImg_l, 0, 0);
 }
 
 // 文字入力時に描画処理を呼び出す
 textBox.addEventListener("input", () => {
     drawText(textBox.value);
+    basedrawed = true;
 })
 
 logoBox.addEventListener("input", () => {
@@ -73,14 +86,14 @@ logoBox.addEventListener("input", () => {
 })
 
 // ロゴ部分のCanvasの位置指定
-function init(){
+function init() {
     canvas_m.style.position = "relative";
     canvas_l.style.position = "relative";
     canvas_l.style.top = "-42px";
     canvas_l.style.left = "1px";
-    
+
 }
-window.onload = function(){
+window.onload = function () {
     init();
 };
 
@@ -89,8 +102,8 @@ function drawText(text) {
     ctx.clearRect(0, 0, canvas_m.clientWidth, canvas_m.clientHeight);
     ctx.drawImage(bgImg, 0, 0);
     ctx.font = "bold 180px 'Kosugi Maru'";
-    ctx.strokeStyle = font_color; ctx.lineWidth = 28; ctx.lineJoin = "round";
     ctx.textAlign = "center";
+    ctx.strokeStyle = font_color; ctx.lineWidth = 28; ctx.lineJoin = "round";
     ctx.fillStyle = "white";
     ctx.textBaseline = "middle";
     ctx.strokeText(text, 640, 220, 1200);
@@ -99,7 +112,7 @@ function drawText(text) {
 
 // チームロゴ部分 描画処理
 function drawText_logo(text) {
-    ctx_l.clearRect(0, 0, canvas_m.clientWidth, canvas_m.clientHeight);
+    ctx_l.clearRect(0, 0, canvas_l.clientWidth, canvas_l.clientHeight);
     ctx_l.drawImage(bgImg_l, 0, 0);
     ctx_l.font = "bold 100px 'Arbutus'";
     ctx_l.textAlign = "center";
@@ -108,47 +121,48 @@ function drawText_logo(text) {
     ctx_l.fillText(text, 640, 58, 1200);
 }
 
+// 
 // 「+」ボタンを押したら合成
-document.querySelector("btn_dl").addEventListener("click", ()=>{
-    concatCanvas("#concat", ["#cv", "#logo"]);
-  });
+// document.querySelector("btn_dl").addEventListener("click", ()=>{
+//     concatCanvas("#concat", ["#cv", "#logo"]);
+//   });
 
-// Canvasの合成
-async function concatCanvas(base, asset){
-    const canvas = document.querySelector(base);
-    const ctx = canvas.getContext("2d");
-  
-    for(let i=0; i<asset.length; i++){
-      const image1 = await getImagefromCanvas(asset[i]);
-      ctx.drawImage(image1, 0, 0, canvas.width, canvas.height);
-    }
-  }
+// // Canvasの合成
+// async function concatCanvas(base, asset){
+//     const canvas = document.querySelector(base);
+//     const ctx = canvas.getContext("2d");
 
-  /**
- * Canvasを画像として取得
- *
- * @param {string} id  対象canvasのid
- * @return {object}
- */
-function getImagefromCanvas(id){
-    return new Promise((resolve, reject) => {
-      const image = new Image();
-      const ctx = document.querySelector(id).getContext("2d");
-      image.onload = () => resolve(image);
-      image.onerror = (e) => reject(e);
-      image.src = ctx.canvas.toDataURL();
-    });
-  }
+//     for(let i=0; i<asset.length; i++){
+//       const image1 = await getImagefromCanvas(asset[i]);
+//       ctx.drawImage(image1, 0, 0, canvas.width, canvas.height);
+//     }
+//   }
 
-// 画像を保存
-document.getElementById('btn_dl').addEventListener('click', dlImg);
+//   /**
+//  * Canvasを画像として取得
+//  *
+//  * @param {string} id  対象canvasのid
+//  * @return {object}
+//  */
+// function getImagefromCanvas(id){
+//     return new Promise((resolve, reject) => {
+//       const image = new Image();
+//       const ctx = document.querySelector(id).getContext("2d");
+//       image.onload = () => resolve(image);
+//       image.onerror = (e) => reject(e);
+//       image.src = ctx.canvas.toDataURL();
+//     });
+//   }
 
-function getImagefromCanvas(id){
-    return new Promise((resolve, reject) => {
-      const image = new Image();
-      const ctx = document.querySelector(id).getContext("2d");
-      image.onload = () => resolve(image);
-      image.onerror = (e) => reject(e);
-      image.src = ctx.canvas.toDataURL();
-    });
-  }
+// // 画像を保存
+// document.getElementById('btn_dl').addEventListener('click', dlImg);
+
+// function getImagefromCanvas(id){
+//     return new Promise((resolve, reject) => {
+//       const image = new Image();
+//       const ctx = document.querySelector(id).getContext("2d");
+//       image.onload = () => resolve(image);
+//       image.onerror = (e) => reject(e);
+//       image.src = ctx.canvas.toDataURL();
+//     });
+//   }
