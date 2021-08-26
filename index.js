@@ -127,6 +127,7 @@ var createImage = function (context) {
     image.src = context.canvas.toDataURL();
     return image;
 }
+
 function downloadCanvas() {
     // alert('button pushed');
     let link = document.createElement("a");
@@ -135,7 +136,6 @@ function downloadCanvas() {
     ctx_mix.drawImage(createImage(ctx), 0, 0);
     ctx_mix.drawImage(createImage(ctx_l), 0, 0);
 
-    link.href = canvas.toDataURL("image/png");
     link.download = "test.png";
     link.click();
 }
