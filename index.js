@@ -47,8 +47,6 @@ function colorChange() {
 
 }
 
-console.log(bgImg.src);
-
 // canvas
 const canvas_m = document.querySelector("#cv");
 const ctx = canvas_m.getContext("2d");
@@ -70,9 +68,9 @@ bgImg.onload = () => {
     }
 }
 
-function drawBase(){
-        ctx.drawImage(bgImg, 0, 0);
-        ctx_l.drawImage(bgImg_l, 0, 0);
+function drawBase() {
+    ctx.drawImage(bgImg, 0, 0);
+    ctx_l.drawImage(bgImg_l, 0, 0);
 }
 
 // 文字入力時に描画処理を呼び出す
@@ -96,6 +94,8 @@ function init() {
 window.onload = function () {
     init();
 };
+
+document.getElementById('btn_dl').addEventListener('click', downloadCanvas);
 
 // タオル部分 描画処理
 function drawText(text) {
@@ -121,48 +121,18 @@ function drawText_logo(text) {
     ctx_l.fillText(text, 640, 58, 1200);
 }
 
-// 
-// 「+」ボタンを押したら合成
-// document.querySelector("btn_dl").addEventListener("click", ()=>{
-//     concatCanvas("#concat", ["#cv", "#logo"]);
-//   });
+// Canvasを合成
+var createImage = function (context) {
+    var image = new Image();
+    image.src = context.canvas.toDataURL();
+    return image;
+}
 
-// // Canvasの合成
-// async function concatCanvas(base, asset){
-//     const canvas = document.querySelector(base);
-//     const ctx = canvas.getContext("2d");
 
-//     for(let i=0; i<asset.length; i++){
-//       const image1 = await getImagefromCanvas(asset[i]);
-//       ctx.drawImage(image1, 0, 0, canvas.width, canvas.height);
-//     }
-//   }
-
-//   /**
-//  * Canvasを画像として取得
-//  *
-//  * @param {string} id  対象canvasのid
-//  * @return {object}
-//  */
-// function getImagefromCanvas(id){
-//     return new Promise((resolve, reject) => {
-//       const image = new Image();
-//       const ctx = document.querySelector(id).getContext("2d");
-//       image.onload = () => resolve(image);
-//       image.onerror = (e) => reject(e);
-//       image.src = ctx.canvas.toDataURL();
-//     });
-//   }
-
-// // 画像を保存
-// document.getElementById('btn_dl').addEventListener('click', dlImg);
-
-// function getImagefromCanvas(id){
-//     return new Promise((resolve, reject) => {
-//       const image = new Image();
-//       const ctx = document.querySelector(id).getContext("2d");
-//       image.onload = () => resolve(image);
-//       image.onerror = (e) => reject(e);
-//       image.src = ctx.canvas.toDataURL();
-//     });
-//   }
+function downloadCanvas() {
+    // alert('button pushed');
+    let link = document.createElement("a");
+    link.href = canvas_m.toDataURL("image/png");
+    link.download = "test.png";
+    link.click();
+}
