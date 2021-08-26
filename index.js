@@ -132,7 +132,13 @@ var createImage = function (context) {
 function downloadCanvas() {
     // alert('button pushed');
     let link = document.createElement("a");
-    link.href = canvas_m.toDataURL("image/png");
+    
+    var ctx_mix = document.createElement('canvas').getContext('2d');
+    ctx_mix.drawImage(createImage(ctx), 0, 0);
+    ctx_mix.drawImage(createImage(ctx_l), 0, 0);
+    var canvas_mix = document.body.appendChild(createImage(ctx_mix));
+
+    link.href = canvas_mix.toDataURL("image/png");
     link.download = "test.png";
     link.click();
 }
