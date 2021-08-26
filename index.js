@@ -128,11 +128,22 @@ var createImage = function (context) {
     return image;
 }
 
+var createImage= function(context){
+    var image= new Image
+    image.src= context.canvas.toDataURL()
+    return image
+  }
+
 
 function downloadCanvas() {
     // alert('button pushed');
     let link = document.createElement("a");
-    link.href = canvas_m.toDataURL("image/png");
+    
+    var ctx_mix = document.createElement('canvas').getContext('2d');
+    ctx_mix.drawImage(createImage(ctx), 0, 0);
+    ctx_mix.drawImage(createImage(ctx_l), 0, 0);
+
+    link.href = ctx_mix.toDataURL("image/png");
     link.download = "test.png";
     link.click();
 }
