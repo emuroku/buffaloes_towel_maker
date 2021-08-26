@@ -127,14 +127,6 @@ var createImage = function (context) {
     image.src = context.canvas.toDataURL();
     return image;
 }
-
-var createImage= function(context){
-    var image= new Image
-    image.src= context.canvas.toDataURL()
-    return image
-  }
-
-
 function downloadCanvas() {
     // alert('button pushed');
     let link = document.createElement("a");
