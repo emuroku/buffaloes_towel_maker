@@ -76,7 +76,7 @@ function drawBase() {
 // 文字入力時に描画処理を呼び出す
 textBox.addEventListener("input", () => {
     drawText(textBox.value);
-    basedrawed = true;
+    // basedrawed = true;
 })
 
 logoBox.addEventListener("input", () => {
