@@ -47,14 +47,12 @@ function colorChange() {
 
 }
 
-// canvas
+// canvasとcontext
 const canvas_m = document.querySelector("#cv");
-const ctx = canvas_m.getContext("2d");
-
-const canvas_l = document.querySelector("#logo");
-const ctx_l = canvas_l.getContext("2d");
-
-
+// message描画用
+const ctx_m = canvas_m.getContext("2d");
+// logo描画用
+const ctx_l = canvas_m.getContext("2d");
 
 // ベース部分描画用フラグ
 var basedrawed = false;
@@ -65,14 +63,14 @@ const a = document.getElementById('download');
 // 背景画像読み込み後にcanvasへ描画
 bgImg.onload = () => {
     if (basedrawed == false) {
-        ctx.drawImage(bgImg, 0, 0);
-        ctx_l.drawImage(bgImg_l, 0, 0);
+        ctx_m.drawImage(bgImg, 0, 0);
+        // ctx_l.drawImage(bgImg_l, 0, 0);
     }
 }
 
 function drawBase() {
-    ctx.drawImage(bgImg, 0, 0);
-    ctx_l.drawImage(bgImg_l, 0, 0);
+    ctx_m.drawImage(bgImg, 0, 0);
+    // ctx_l.drawImage(bgImg_l, 0, 0);
 }
 
 // 文字入力時に描画処理を呼び出す
@@ -85,42 +83,38 @@ logoBox.addEventListener("input", () => {
     drawText_logo(logoBox.value);
 })
 
-// ロゴ部分のCanvasの位置指定
-function init() {
-    canvas_m.style.position = "relative";
-    canvas_l.style.position = "relative";
-    canvas_l.style.top = "-42px";
-    canvas_l.style.left = "1px";
-
-}
-window.onload = function () {
-    init();
-};
+// // ロゴ部分のCanvasの位置指定
+// function init() {
+//     canvas_m.style.position = "relative";
+// }
+// window.onload = function () {
+//     init();
+// };
 
 document.getElementById('btn_dl').addEventListener('click', downloadCanvas);
 
 // タオル部分 描画処理
 function drawText(text) {
-    ctx.clearRect(0, 0, canvas_m.clientWidth, canvas_m.clientHeight);
-    ctx.drawImage(bgImg, 0, 0);
-    ctx.font = "bold 180px 'Kosugi Maru'";
-    ctx.textAlign = "center";
-    ctx.strokeStyle = font_color; ctx.lineWidth = 28; ctx.lineJoin = "round";
-    ctx.fillStyle = "white";
-    ctx.textBaseline = "middle";
-    ctx.strokeText(text, 640, 220, 1200);
-    ctx.fillText(text, 640, 220, 1200);
+    ctx_m.clearRect(0, 0, canvas_m.clientWidth, canvas_m.clientHeight);
+    ctx_m.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height-bgImg_l.height,0,0,bgImg.width, bgImg.height-bgImg_l.height);
+    ctx_m.font = "bold 180px 'Kosugi Maru'";
+    ctx_m.textAlign = "center";
+    ctx_m.strokeStyle = font_color; ctx_m.lineWidth = 28; ctx_m.lineJoin = "round";
+    ctx_m.fillStyle = "white";
+    ctx_m.textBaseline = "middle";
+    ctx_m.strokeText(text, 640, 220, 1180);
+    ctx_m.fillText(text, 640, 220, 1180);
 }
 
 // チームロゴ部分 描画処理
 function drawText_logo(text) {
-    ctx_l.clearRect(0, 0, canvas_l.clientWidth, canvas_l.clientHeight);
-    ctx_l.drawImage(bgImg_l, 0, 0);
-    ctx_l.font = "bold 100px 'Arbutus'";
-    ctx_l.textAlign = "center";
-    ctx_l.fillStyle = font_color;
-    ctx_l.textBaseline = "middle";
-    ctx_l.fillText(text, 640, 58, 1200);
+    ctx_m.clearRect(0, 418, canvas_m.clientWidth, canvas_m.clientHeight);
+    ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
+    ctx_m.font = "bold 100px 'Arbutus'";
+    ctx_m.textAlign = "center";
+    ctx_m.fillStyle = font_color;
+    ctx_m.textBaseline = "middle";
+    ctx_m.fillText(text, 640, 478, 1200);
 }
 
 // Canvasを合成
@@ -131,22 +125,11 @@ var createImage = function (context) {
 }
 
 function downloadCanvas() {
+    // URL取得用のa要素を生成
     let link = document.createElement("a");
-    
-    // 合成用Canvasの生成
-    var mixed_canvas = document.createElement("canvas");
-    // サイズをmessage用canvasに合わせる
-    mixed_canvas.width = canvas_m.width;
-    mixed_canvas.height = canvas_m.height;
 
-    var ctx_mix = mixed_canvas.getContext('2d');
-    ctx_mix.drawImage(createImage(ctx), 0, 0);
-    ctx_mix.drawImage(createImage(ctx_l), 0, 0);
-    document.body.appendChild(createImage(ctx_mix));
-    // ctx_mix.clearRect(0, 0, canvas_m.clientWidth, canvas_m.clientHeight);
+    link.href = canvas_m.toDataURL("image/png");
 
-    link.href = mixed_canvas.toDataURL("image/png");
-
-    link.download = "test.png";
+    link.download = "image.png";
     link.click();
 }
