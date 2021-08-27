@@ -54,6 +54,8 @@ const ctx = canvas_m.getContext("2d");
 const canvas_l = document.querySelector("#logo");
 const ctx_l = canvas_l.getContext("2d");
 
+
+
 // ベース部分描画用フラグ
 var basedrawed = false;
 
@@ -129,17 +131,22 @@ var createImage = function (context) {
 }
 
 function downloadCanvas() {
-    // alert('button pushed');
     let link = document.createElement("a");
     
-    var ctx_mix = document.createElement('canvas').getContext('2d');
+    // 合成用Canvasの生成
+    var mixed_canvas = document.createElement("canvas");
+    // サイズをmessage用canvasに合わせる
+    mixed_canvas.width = canvas_m.width;
+    mixed_canvas.height = canvas_m.height;
+
+    var ctx_mix = mixed_canvas.getContext('2d');
     ctx_mix.drawImage(createImage(ctx), 0, 0);
     ctx_mix.drawImage(createImage(ctx_l), 0, 0);
-    // document.body.appendChild(createImage(ctx_mix));
+    document.body.appendChild(createImage(ctx_mix));
+    // ctx_mix.clearRect(0, 0, canvas_m.clientWidth, canvas_m.clientHeight);
 
-    link.href = canvas_m.toDataURL("image/png");
+    link.href = mixed_canvas.toDataURL("image/png");
 
     link.download = "test.png";
     link.click();
 }
-
