@@ -2,6 +2,9 @@
 const textBox = document.getElementById("message"); // メッセージ部分
 const logoBox = document.getElementById("teamlogo"); // チームロゴ部分
 
+// ベース部分描画用フラグ
+var basedrawed = false;
+
 // ベース画像
 var bgImg = new Image();
 bgImg.src = 'img/tpl_p.png' // デフォルトはピンク
@@ -18,7 +21,8 @@ var font_color = '#e05581'; // 文字色の設定
 // ラジオボタンが変更されたらidが持つ文字列をcolorに代入する
 document.getElementById('bg_color'), addEventListener('change', colorChange);
 function colorChange() {
-    // basedrawed = false;
+    // ctx_m.drawImage(bgImg, 0, 0);
+        // ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
     let radio = document.querySelectorAll('#bg_color input');
     for (let i = 0; i < radio.length; i++) {
         if (radio[i].checked) {
@@ -27,6 +31,7 @@ function colorChange() {
             continue;
         }
     }
+    // basedrawed = false;
     // colorの値によって分岐
     switch (color) {
         case 'pink':
@@ -54,9 +59,6 @@ const ctx_m = canvas_m.getContext("2d");
 // logo描画用
 const ctx_l = canvas_m.getContext("2d");
 
-// ベース部分描画用フラグ
-var basedrawed = false;
-
 // download用のa要素
 const a = document.getElementById('download');
 
@@ -64,23 +66,24 @@ const a = document.getElementById('download');
 bgImg.onload = () => {
     if (basedrawed == false) {
         ctx_m.drawImage(bgImg, 0, 0);
-        // ctx_l.drawImage(bgImg_l, 0, 0);
+        ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
     }
 }
 
-function drawBase() {
-    ctx_m.drawImage(bgImg, 0, 0);
-    // ctx_l.drawImage(bgImg_l, 0, 0);
-}
+// function drawBase() {
+//     ctx_m.drawImage(bgImg, 0, 0);
+//     ctx_m.drawImage(bgImg_l, 0, 0);
+// }
 
 // 文字入力時に描画処理を呼び出す
 textBox.addEventListener("input", () => {
     drawText(textBox.value);
-    // basedrawed = true;
+    basedrawed = true;
 })
 
 logoBox.addEventListener("input", () => {
     drawText_logo(logoBox.value);
+    basedrawed = true;
 })
 
 // // ロゴ部分のCanvasの位置指定
@@ -96,7 +99,7 @@ document.getElementById('btn_dl').addEventListener('click', downloadCanvas);
 // タオル部分 描画処理
 function drawText(text) {
     ctx_m.clearRect(0, 0, canvas_m.clientWidth, canvas_m.clientHeight);
-    ctx_m.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height-bgImg_l.height,0,0,bgImg.width, bgImg.height-bgImg_l.height);
+    ctx_m.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height - bgImg_l.height, 0, 0, bgImg.width, bgImg.height - bgImg_l.height);
     ctx_m.font = "bold 180px 'Kosugi Maru'";
     ctx_m.textAlign = "center";
     ctx_m.strokeStyle = font_color; ctx_m.lineWidth = 28; ctx_m.lineJoin = "round";
@@ -110,11 +113,11 @@ function drawText(text) {
 function drawText_logo(text) {
     ctx_m.clearRect(0, 418, canvas_m.clientWidth, canvas_m.clientHeight);
     ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
-    ctx_m.font = "bold 100px 'Arbutus'";
+    ctx_m.font = "bold 80px 'Arbutus'";
     ctx_m.textAlign = "center";
     ctx_m.fillStyle = font_color;
     ctx_m.textBaseline = "middle";
-    ctx_m.fillText(text, 640, 478, 1200);
+    ctx_m.fillText(text, 640, 475, 1200);
 }
 
 // Canvasを合成
