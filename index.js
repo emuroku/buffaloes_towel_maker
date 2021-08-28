@@ -10,7 +10,7 @@ var bgImg = new Image();
 bgImg.src = 'img/tpl_p.png' // デフォルトはピンク
 
 var bgImg_l = new Image();
-bgImg_l.src = 'img/logo.png';
+bgImg_l.src = 'img/bottom.png';
 
 var file_name = 'tmpfile.png';
 
@@ -136,3 +136,26 @@ function downloadCanvas() {
     link.download = "image.png";
     link.click();
 }
+
+// 入力フォームが両方埋まっている場合にsubmitボタンを有効化
+// チーム名入力時の判定
+$("#teamlogo").on("input", function(){
+    var input = $(this).val();
+    var input_m = document.getElementById("message").value;
+    if(input != '' && input_m != ''){
+        $("#btn_dl").prop('disabled', false); // disabledを無効にする
+    }else{
+        $("#btn_dl").prop('disabled', true); // disabledを有効にする
+    }
+});
+
+// メッセージ部分入力時の判定
+$("#message").on("input", function(){
+    var input = $(this).val();
+    var input_l = document.getElementById("teamlogo").value;
+    if(input_l != '' && input != ''){
+        $("#btn_dl").prop('disabled', false); // disabledを無効にする
+    }else{
+        $("#btn_dl").prop('disabled', true); // disabledを有効にする
+    }
+});

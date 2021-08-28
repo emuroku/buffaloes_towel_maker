@@ -15,26 +15,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arbutus&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
     <!-- navigation -->
-    <nav class="navbar navbar-expand-sm justify-content-center navbar-light bg-light">
+    <nav class="navbar navbar-expand-sm justify-content-center navbar-light bg-light fixed-top">
         <h1>★Bsメッセージタオル風イメージメーカー★</h1>
     </nav>
 
     <!-- container -->
     <div class="container">
         <p>バファローズ公式グッズのメッセージタオル風の画像をつくろう！</p>
-        <p>▼こんな画像ができます▼</p>
-        <img class="main_img" src="img/towel_sample.png" width=400px>
-        <div>
+        <div class="col-md-12">
+            <p>▼こんな画像ができます▼</p>
+            <img class="main_img" src="img/towel_sample.png" width=400px>
+        </div>
+        <div class="col-md-12">
             <p>▼ここに作成した画像が表示されます▼</p>
             <!-- タオル全体とメッセージ部分のCanvas -->
-            <div class="col-md-12">
-                <canvas id="cv" width="1254" height="530" style="width: 400px; border:1px solid #666666;"></canvas>
-            </div>
+            <!-- <div class="col-md-12"> -->
+            <canvas id="cv" width="1254" height="530" style="width: 400px; border:1px solid #666666;"></canvas>
         </div>
+
         <!-- 入力フォーム -->
         <form>
             <!-- カラー選択 -->
@@ -58,19 +61,21 @@
             </div>
 
             <!-- メッセージ入力 -->
-            <div class="form-group form-row">
-                <label class="col-md-3 col-form-label text-md-right" for="message">メッセージ</label>
-                <div class="col-md-6">
-                    <input class="form-control" type="text" id="message">
+            <div id="input_form">
+                <div class="form-group form-row">
+                    <label class="col-md-3 col-form-label text-md-right" for="message">メッセージ</label>
+                    <div class="col-md-6">
+                        <input class="form-control" type="text" id="message">
+                    </div>
+                </div>
+                <div class="form-group form-row">
+                    <label class="col-md-3 col-form-label text-md-right" for="teamlogo">チーム名(半角英数字)</label>
+                    <div class="col-md-6">
+                        <input class="form-control" type="text" id="teamlogo">
+                    </div>
                 </div>
             </div>
-            <div class="form-group form-row">
-                <label class="col-md-3 col-form-label text-md-right" for="teamlogo">チーム名(半角英数字)</label>
-                <div class="col-md-6">
-                    <input class="form-control" type="text" id="teamlogo">
-                </div>
-            </div>
-            <button class="btn btn-primary" id="btn_dl">作成する
+            <button class="btn btn-primary" id="btn_dl" disabled>作成する
                 <a id="download" download="sample.png"></a>
             </button>
         </form>
