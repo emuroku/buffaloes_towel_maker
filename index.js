@@ -22,7 +22,7 @@ var font_color = '#e05581'; // 文字色の設定
 document.getElementById('bg_color'), addEventListener('change', colorChange);
 function colorChange() {
     // ctx_m.drawImage(bgImg, 0, 0);
-        // ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
+    // ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
     let radio = document.querySelectorAll('#bg_color input');
     for (let i = 0; i < radio.length; i++) {
         if (radio[i].checked) {
@@ -139,23 +139,23 @@ function downloadCanvas() {
 
 // 入力フォームが両方埋まっている場合にsubmitボタンを有効化
 // チーム名入力時の判定
-$("#teamlogo").on("input", function(){
+$("#teamlogo").on("input", function () {
     var input = $(this).val();
     var input_m = document.getElementById("message").value;
-    if(input != '' && input_m != ''){
+    if (input != '' && input_m != '') {
         $("#btn_dl").prop('disabled', false); // disabledを無効にする
-    }else{
+    } else {
         $("#btn_dl").prop('disabled', true); // disabledを有効にする
     }
 });
 
 // メッセージ部分入力時の判定
-$("#message").on("input", function(){
+$("#message").on("input", function () {
     var input = $(this).val();
     var input_l = document.getElementById("teamlogo").value;
-    if(input_l != '' && input != ''){
+    if (input_l != '' && input != '') {
         $("#btn_dl").prop('disabled', false); // disabledを無効にする
-    }else{
+    } else {
         $("#btn_dl").prop('disabled', true); // disabledを有効にする
     }
 });

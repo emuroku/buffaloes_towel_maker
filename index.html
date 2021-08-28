@@ -15,18 +15,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arbutus&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
     <!-- navigation -->
     <nav class="navbar navbar-expand-sm justify-content-center navbar-light bg-light">
-        <h2>Bsメッセージタオル風イメージメーカー</h2><br>
+        <h2>Bs応援メッセージタオル風イメージメーカー</h2><br>
     </nav>
 
     <!-- container -->
     <div class="container">
-        <p>バファローズ公式グッズのメッセージタオル風の画像をつくろう</p>
+        
+        <p><i class="fa-solid fa-pen-field"></i>バファローズ公式グッズの応援メッセージタオル風の画像をつくろう</p>
         <div class="col-12">
             <p>▼こんな画像ができます▼</p>
             <img class="main_img" src="img/towel_sample.png" width=400px>
@@ -77,6 +80,27 @@
                 <a id="download" download="sample.png"></a>
             </button>
         </form>
+
+
+        <!-- Twitter投稿誘導 -->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5><a id="result"></a></h5>
+                    <p>作成した画像をぜひTwitterで紹介してください！<br>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter fa-2x"
+                                style="color: #55acee;"></i>つぶやく</a>
+                    </p>
+
+                    <small>↓こちらを付けてシェアしてくださると嬉しいです</small>
+                    <textarea class="form-control"
+                        area-label="With textarea"> #Bs応援タオルメーカー https://emuroku.github.io/buffaloes_towel_maker/</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mb-2">
+            <small>制作：</small><a href="https://twitter.com/m610310" target="_blank">@m610310</a>
+        </div>
     </div>
 </body>
 
