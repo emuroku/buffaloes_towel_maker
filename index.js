@@ -139,6 +139,9 @@ var createImage = function (context) {
 }
 
 function downloadCanvas() {
+    // canvasのstyleにborderを追加
+    canvas_m.style.border = "2px solid #222222";
+
     // URL取得用のa要素を生成
     let link = document.createElement("a");
 
