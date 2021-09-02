@@ -17,6 +17,15 @@
 .main_img{
     margin: 0 0 40px 0;
     border: 1px #666666 solid;
+    /* 幅が400未満のときに引き伸ばす */
+    width: 100%; 
+    max-width: 400px;
+}
+
+#cv{ 
+    width: 100%; 
+    border:1px solid #666666;
+    max-width: 400px;
 }
 
 .message_font{
