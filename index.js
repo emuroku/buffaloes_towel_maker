@@ -54,7 +54,7 @@ function colorChange() {
         ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
         drawText(textBox.value);
         drawText_logo(logoBox.value);
-    }, 100);
+    }, 200);
 
     // ctx_m.drawImage(bgImg, 0, 0);
     // ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
