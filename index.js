@@ -16,7 +16,8 @@ var file_name = 'tmpfile.png';
 
 // カラーの決定
 var color = 'pink'; // デフォルトはピンク
-var font_color = '#e05581'; // 文字色の設定
+var font_color_main = '#e05581'; // メッセージ部分文字色の設定
+var font_color_sub = '#e05581'; // チーム名部分文字色の設定
 
 // ラジオボタンが変更されたらidが持つ文字列をcolorに代入する
 document.getElementById('bg_color'), addEventListener('change', colorChange);
@@ -35,18 +36,33 @@ function colorChange() {
     // colorの値によって分岐
     switch (color) {
         case 'pink':
-            font_color = '#e05581';
+            font_color_main = '#e05581';
+            font_color_sub = '#e05581';
             bgImg.src = "img/tpl_p.png";
             break;
 
         case 'blue':
-            font_color = '#1f7189';
+            font_color_main = '#1f7189';
+            font_color_sub = '#1f7189';
             bgImg.src = "img/tpl_b.png";
             break;
 
         case 'green':
-            font_color = '#4e9243';
+            font_color_main = '#4e9243';
+            font_color_sub = '#4e9243';
             bgImg.src = "img/tpl_g.png";
+            break;
+
+        case 'pink2':
+            font_color_main = '#303854';
+            font_color_sub = '#FFFFFF';
+            bgImg.src = "img/tpl_p_2.png";
+            break;
+
+        case 'yellow':
+            font_color_main = '#5f8851';
+            font_color_sub = '#FFFFFF';
+            bgImg.src = "img/tpl_y.png";
             break;
     }
     setTimeout(function () {
@@ -113,7 +129,7 @@ function drawText(text) {
     ctx_m.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height - bgImg_l.height, 0, 0, bgImg.width, bgImg.height - bgImg_l.height);
     ctx_m.font = "bold 180px 'Kosugi Maru'";
     ctx_m.textAlign = "center";
-    ctx_m.strokeStyle = font_color; ctx_m.lineWidth = 28; ctx_m.lineJoin = "round";
+    ctx_m.strokeStyle = font_color_main; ctx_m.lineWidth = 28; ctx_m.lineJoin = "round";
     ctx_m.fillStyle = "white";
     ctx_m.textBaseline = "middle";
     ctx_m.strokeText(text, 640, 220, 1180);
@@ -126,7 +142,7 @@ function drawText_logo(text) {
     ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
     ctx_m.font = "bold 80px 'Arbutus'";
     ctx_m.textAlign = "center";
-    ctx_m.fillStyle = font_color;
+    ctx_m.fillStyle = font_color_sub;
     ctx_m.textBaseline = "middle";
     ctx_m.fillText(text, 640, 475, 1200);
 }
