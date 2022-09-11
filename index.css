@@ -45,6 +45,10 @@ button{
 }
 
 .card{
-    margin: 30px 0 30px 0;
+    margin: 30px 0;
     text-align: left;
+}
+
+.head-text{
+    margin-bottom: 20px;
 }
