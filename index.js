@@ -125,7 +125,7 @@ document.getElementById('btn_dl').addEventListener('click', downloadCanvas);
 
 // タオル部分 描画処理
 function drawText(text) {
-    ctx_m.clearRect(0, 0, canvas_m.clientWidth, canvas_m.clientHeight);
+    // ctx_m.clearRect(0, 0, canvas_m.clientWidth, canvas_m.clientHeight);
     ctx_m.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height - bgImg_l.height, 0, 0, bgImg.width, bgImg.height - bgImg_l.height);
     ctx_m.font = "bold 180px 'Kosugi Maru'";
     ctx_m.textAlign = "center";
