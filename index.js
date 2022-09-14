@@ -1,6 +1,6 @@
 // テキストボックス
 const textBox = document.getElementById("message"); // メッセージ部分
-const logoBox = document.getElementById("teamlogo"); // チームロゴ部分
+const logoBox = document.getElementById("teamlogo"); // チーム名部分
 
 // ベース部分描画用フラグ
 var basedrawed = false;
@@ -138,7 +138,7 @@ function drawText(text) {
 
 // チームロゴ部分 描画処理
 function drawText_logo(text) {
-    ctx_m.clearRect(0, 418, canvas_m.clientWidth, canvas_m.clientHeight);
+    // ctx_m.clearRect(0, 418, canvas_m.clientWidth, canvas_m.clientHeight);
     ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
     ctx_m.font = "bold 80px 'Arbutus'";
     ctx_m.textAlign = "center";
