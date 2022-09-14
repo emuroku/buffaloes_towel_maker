@@ -52,3 +52,17 @@ button{
 .head-text{
     margin-bottom: 40px;
 }
+
+footer{
+    text-align: center;
+    bottom: 0; /*下に固定*/
+    flex: block;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.copyright{
+    text-align: center;
+    color: #444444;
+    font-size: small;
+}
