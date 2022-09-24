@@ -1,6 +1,6 @@
 // テキストボックス
-const textBox = document.getElementById("message"); // メッセージ部分
-const logoBox = document.getElementById("teamlogo"); // チーム名部分
+const textBox = document.getElementById('message'); // メッセージ部分
+const logoBox = document.getElementById('teamlogo'); // チーム名部分
 
 // ベース部分描画用フラグ
 var basedrawed = false;
@@ -28,62 +28,58 @@ function colorChange() {
     for (let i = 0; i < radio.length; i++) {
         if (radio[i].checked) {
             color = radio[i].id;
-            console.log(color); // デバッグ用
             continue;
         }
     }
-    // basedrawed = false;
+    
     // colorの値によって分岐
     switch (color) {
         case 'pink':
             font_color_main = '#e05581';
             font_color_sub = '#e05581';
-            bgImg.src = "img/tpl_p.png";
+            bgImg.src = 'img/tpl_p.png';
             break;
 
         case 'blue':
             font_color_main = '#1f7189';
             font_color_sub = '#1f7189';
-            bgImg.src = "img/tpl_b.png";
+            bgImg.src = 'img/tpl_b.png';
             break;
 
         case 'green':
             font_color_main = '#4e9243';
             font_color_sub = '#4e9243';
-            bgImg.src = "img/tpl_g.png";
+            bgImg.src = 'img/tpl_g.png';
             break;
 
         case 'pink2':
             font_color_main = '#303854';
             font_color_sub = '#FFFFFF';
-            bgImg.src = "img/tpl_p_2.png";
+            bgImg.src = 'img/tpl_p_2.png';
             break;
 
         case 'yellow':
             font_color_main = '#5f8851';
             font_color_sub = '#FFFFFF';
-            bgImg.src = "img/tpl_y.png";
+            bgImg.src = 'img/tpl_y.png';
             break;
     }
+
+    // 入力時、稀に表示が崩れる不具合の対策としてTimeoutを設定
     setTimeout(function () {
         ctx_m.drawImage(bgImg, 0, 0);
         ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
         drawText(textBox.value);
         drawText_logo(logoBox.value);
     }, 200);
-
-    // ctx_m.drawImage(bgImg, 0, 0);
-    // ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
-    // drawText(textBox.value);
-    // drawText_logo(logoBox.value);
 }
 
 // canvasとcontext
-const canvas_m = document.querySelector("#cv");
+const canvas_m = document.querySelector('#cv');
 // message描画用
-const ctx_m = canvas_m.getContext("2d");
+const ctx_m = canvas_m.getContext('2d');
 // logo描画用
-const ctx_l = canvas_m.getContext("2d");
+const ctx_l = canvas_m.getContext('2d');
 
 // download用のa要素
 const a = document.getElementById('download');
@@ -97,29 +93,16 @@ bgImg.onload = () => {
     }
 }
 
-// function drawBase() {
-//     ctx_m.drawImage(bgImg, 0, 0);
-//     ctx_m.drawImage(bgImg_l, 0, 0);
-// }
-
 // 文字入力時に描画処理を呼び出す
-textBox.addEventListener("input", () => {
+textBox.addEventListener('input', () => {
     drawText(textBox.value);
     basedrawed = true;
 })
 
-logoBox.addEventListener("input", () => {
+logoBox.addEventListener('input', () => {
     drawText_logo(logoBox.value);
     basedrawed = true;
 })
-
-// // ロゴ部分のCanvasの位置指定
-// function init() {
-//     canvas_m.style.position = "relative";
-// }
-// window.onload = function () {
-//     init();
-// };
 
 document.getElementById('btn_dl').addEventListener('click', downloadCanvas);
 
