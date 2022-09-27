@@ -22,8 +22,6 @@ var font_color_sub = '#e05581'; // チーム名部分文字色の設定
 // ラジオボタンが変更されたらidが持つ文字列をcolorに代入する
 document.getElementById('bg_color'), addEventListener('change', colorChange);
 function colorChange() {
-    // ctx_m.drawImage(bgImg, 0, 0);
-    // ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
     let radio = document.querySelectorAll('#bg_color input');
     for (let i = 0; i < radio.length; i++) {
         if (radio[i].checked) {
@@ -31,7 +29,7 @@ function colorChange() {
             continue;
         }
     }
-    
+
     // colorの値によって分岐
     switch (color) {
         case 'pink':
@@ -89,7 +87,6 @@ bgImg.onload = () => {
     if (basedrawed == false) {
         ctx_m.drawImage(bgImg, 0, 0);
         ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
-        // basedrawed = true;
     }
 }
 
@@ -108,7 +105,6 @@ document.getElementById('btn_dl').addEventListener('click', downloadCanvas);
 
 // タオル部分 描画処理
 function drawText(text) {
-    // ctx_m.clearRect(0, 0, canvas_m.clientWidth, canvas_m.clientHeight);
     ctx_m.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height - bgImg_l.height, 0, 0, bgImg.width, bgImg.height - bgImg_l.height);
     ctx_m.font = "bold 180px 'Kosugi Maru'";
     ctx_m.textAlign = "center";
@@ -121,7 +117,6 @@ function drawText(text) {
 
 // チームロゴ部分 描画処理
 function drawText_logo(text) {
-    // ctx_m.clearRect(0, 418, canvas_m.clientWidth, canvas_m.clientHeight);
     ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
     ctx_m.font = "bold 80px 'Arbutus'";
     ctx_m.textAlign = "center";
