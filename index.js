@@ -2,9 +2,6 @@
 const textBox = document.getElementById('message'); // メッセージ部分
 const logoBox = document.getElementById('teamlogo'); // チーム名部分
 
-// ベース部分描画用フラグ
-var basedrawed = false;
-
 // ベース画像
 var bgImg = new Image();
 bgImg.src = 'img/tpl_p.png' // デフォルトはピンク
@@ -20,7 +17,7 @@ var font_color_main = '#e05581'; // メッセージ部分文字色の設定
 var font_color_sub = '#e05581'; // チーム名部分文字色の設定
 
 // ラジオボタンが変更されたらidが持つ文字列をcolorに代入する
-document.getElementById('bg_color'), addEventListener('change', colorChange);
+document.getElementById('bg_color').addEventListener('change', colorChange);
 function colorChange() {
     let radio = document.querySelectorAll('#bg_color input');
     for (let i = 0; i < radio.length; i++) {
@@ -62,14 +59,6 @@ function colorChange() {
             bgImg.src = 'img/tpl_y.png';
             break;
     }
-
-    // 入力時、稀に表示が崩れる不具合の対策としてTimeoutを設定
-    setTimeout(function () {
-        ctx_m.drawImage(bgImg, 0, 0);
-        ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
-        drawText(textBox.value);
-        drawText_logo(logoBox.value);
-    }, 200);
 }
 
 // canvasとcontext
@@ -82,23 +71,21 @@ const ctx_l = canvas_m.getContext('2d');
 // download用のa要素
 const a = document.getElementById('download');
 
-// 背景画像読み込み後にcanvasへ描画
+// 背景画像読み込みが発生したらcanvasへ描画する
 bgImg.onload = () => {
-    if (basedrawed == false) {
-        ctx_m.drawImage(bgImg, 0, 0);
-        ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
-    }
+    ctx_m.drawImage(bgImg, 0, 0);
+    ctx_m.drawImage(bgImg, 0, 418, bgImg.width, bgImg_l.height, 0, 418, bgImg.width, bgImg_l.height);
+    drawText(textBox.value);
+    drawText_logo(logoBox.value);
 }
 
 // 文字入力時に描画処理を呼び出す
 textBox.addEventListener('input', () => {
     drawText(textBox.value);
-    basedrawed = true;
 })
 
 logoBox.addEventListener('input', () => {
     drawText_logo(logoBox.value);
-    basedrawed = true;
 })
 
 document.getElementById('btn_dl').addEventListener('click', downloadCanvas);
